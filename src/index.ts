@@ -34,7 +34,27 @@ const load = async () => {
         repo: 'express-typescript'
     });
 
-    console.log(repoPulls.data.length);
+    const params = "GET https://github.com/octocat/Hello-World/commit/7fd1a60b01f91b314f59955a4e4d4e80d8edf11d.diff";
+    const repoDiffRequest = await octokit.request(params); 
+    //res.data ->
+    // 'diff --git a/README b/README\n' +
+    // 'index c57eff5..980a0d5 100644\n' +
+    // '--- a/README\n' +
+    // '+++ b/README\n' +
+    // '@@ -1 +1 @@\n' +
+    // '-Hello World!\n' +
+    // '\\ No newline at end of file\n' +
+    // '+Hello World!\n'
+
+    // const repoCommits = await octokit.repos.listCommits({
+    //     owner: 'zheladev',
+    //     repo: 'GrowFarm',
+    //     mediaType: {
+    //         format: "diff",
+    //     }
+    // });
+
+    console.log(repoDiffRequest);
 
 
     //TODO: research whether https://github.com/octokit/request.js/ is needed.
